@@ -20,15 +20,15 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass{article}
-
+\usepackage{hyperref}
 \usepackage[version=3]{mhchem} % Package for chemical equation typesetting
 \usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
 \usepackage{graphicx} % Required for the inclusion of images
 \usepackage{natbib} % Required to change bibliography style to APA
 \usepackage{amsmath} % Required for some math elements 
 
-\setlength\parindent{0pt} % Removes all indentation from paragraphs
-
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
 \renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
 
 %\usepackage{times} % Uncomment to use the Times New Roman font
@@ -52,26 +52,47 @@
 % \end{abstract}
 
 %----------------------------------------------------------------------------------------
-%	SECTION 1
+%	SECTION 0
 %----------------------------------------------------------------------------------------
 \section{Updates on previous goals}
-Previous goals are composed of several parts. Since BART get back to run with previous 1-group test, our focus shifts from execution code development to the main
+Previous goals are composed of several parts. Since BART get back to run with previous 1-group test, our focus shifts from execution code development to two parts:
+\begin{itemize}
+	\item Unit tests of BART.
+	\item Documentation of BART.
+\end{itemize}
+
+We decided that my goal, before we assign missions to different people, is to gradually document BART using doxygen.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+From last meeting, it took me two days to make group seminar slides, yet, the group seminar was not hosted. For the rest of the time, documentation was performed to cover part of or all of some classes.
+
+A success is that I can finally correctly configure doxygen. After this, it really helped me see errors or improper spots in documentation comments in header files.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 \section{Things you need from Rachel}
-Up to now, I would say temporarily no. But I might need advice on how to make 
+Initially, I was trying to ask for help on doxygen. But StackOverflow helped enough.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
 \section{Goals for the coming week}
+I would like to continue the documentation. In the meantime, iterating on already-documented files to fix documentation errors. Gradually, I feel it's quite necessary to iterate using compiled doxygen files, which shows potential errors, grammatic errors, logical flaws, etc.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
 %----------------------------------------------------------------------------------------
 \section{Links to any related materials}
+All the things not ready yet on BART upstream. But you can take a look by cloning my origin and see the doxygen files or see the html files:  \url{https://github.com/weixiong-zheng-berkeley/BART/tree/devel/html}.
+
+Also, here is a snapshot of the doxygen page show class hierarchy: \url{https://www.dropbox.com/s/ghjw5f8trzp88xs/Screenshot%202017-11-02%2000.23.41.png?dl=0}.
+	
+Last but not least, here's the LaTeX template and recaps (not really recap as we have progress updates.): \url{https://github.com/weixiong-zheng-berkeley/Research-Meeting-Recap}.
+
 
 
 %----------------------------------------------------------------------------------------

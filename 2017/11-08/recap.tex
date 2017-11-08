@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Weekly Recap} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+Last week's goal was to finish up documenting BART using doxygen. Up to last report,
+I got familiar with doxygen for basic functionalities and documented some of the classes
+in {\tt BART}.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+It goes well and the only remaining work is the documentation of part of {\tt EquationBase<dim>}.
+
+Fortunately, the past week has been great so far in terms of adapting myself to enjoying
+doxygen. What I have gradually tried are:
+\begin{itemize}
+	\item Optimizing visual appearance of doxygen output.
+	\item Adding hyper link for things like some specific documentation or articles illustrating formulations.
+	\item Adding LaTeX formulas and symbols through the documentation.
+\end{itemize}
+
+For purpose of explaining which does what, it will be done, but we later could continuously optimize the
+way we document, for better clarification and visualization.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+Not up to now about doxygen, as I am comfortable with it right now. Though I will utilize 
+the group resource on github for unit test, I might still need help with it as sometimes talking
+is a faster way for me to understand for things I couldn't get through by reading.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals for the coming week}
+It would be the beginning of the unit test. We will see how far I can go. Hopefully, it
+will be as enjoyable as doxygen.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+\section{Links to any related materials}
+All the things not ready yet on BART upstream. But you can take a look by cloning my origin and see the doxygen files or see the html files:  \url{https://github.com/weixiong-zheng-berkeley/BART/tree/devel/html}.
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

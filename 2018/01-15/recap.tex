@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Weekly Recap} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+Previous goals was to change directions for unit testing from Google test to CTest.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+In the past few days, lots of efforts have been put on:
+\begin{itemize}
+	\item How to make non-100\%-autopilot cmake setting up (most efforts).
+	\item How to use CTest to do unit testing.
+\end{itemize}
+
+So far, linking has finally been performed and principle of setting CMakeLists.txt has been known. Up to the time of meeting, several small demos will be shown. Updates on restart branch will also be available soon.
+
+Compared to deal.II default CMakeLists.txt, all sources are made into one executable (I guess). Modified cmake system performs the following tasks:
+\begin{itemize}
+	\item Making an executable solely with main.cc;
+	\item Making one independent library per subdirectory of source folder (src);
+	\item Making one executable per test source and link with corresponding libraries made above.
+\end{itemize}
+
+Each testing is independent of one another and has its own main function per se. Thus, generating comparison file can be different from Google test. One could design the output functionality inside the testing sources with std::fstream and generate output once by directly calling the testing executables. Check if the output is correct and in a desirable way. If so, modify the name of the output file to be with the same name as the testing source file except with the extension of ``.output". Each time one calls ctest for testing purpose, the testing will be performed against those once generated comparison files. That being said, we wouldn't necessarily have to design the testing with knowing the results beforehand.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+Not up to now.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals for the coming week}
+\begin{itemize}
+	\item Adding instruction into Style Guide on how to add unit testing
+	\item Performing rewriting with unit testing.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

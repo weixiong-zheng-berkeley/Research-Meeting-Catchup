@@ -1,0 +1,126 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Weekly Catchup} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+Previous goal was to make MPI work with ctest.
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+From last check-in, examples on how to use CTest, including dummy demos and real unit 
+tests, for unit testing are given. Yet, MPI was not necessary at that point. When adding unit 
+test for MeshGenerator<dim>, however, MPI has to be involved.
+
+Therefore, first part of the efforts was put on showing how MPI is used to work with unit 
+test. A dummy demo without involving BART classes was given. Basically, writing a 
+MPI-related unit test with CTest is to write a complete MPI program. As current unit test
+is logging-based, a collective logging functionality was developed based on deal.II's test suite example with modifications.
+
+The other part of efforts was to simplify how to initialize/finalize logging in unit testing, 
+which is the foundation of the ctest with deal.II. Wrapper functions/struct's are provided for 
+developers to call and will appear in next PR, which include both serial tests and MPI-based tests.
+
+The last part was to show how CTest can be done with external input files. Though executables
+can find input files specified by name (in the same directory as the test source file), CTest
+would not be able to find it. First trial was to use C function getcwd to generate the path for that file so the filename is completed with its absolute path. It turned out unit test still failed. 
+Suggestions from developers was to use macros to define the absolute path, which turned me 
+to playing game with CMake for a while. It paid off at the end.
+
+In parallel, Josh is trying to develop a unit test framework based on GTest. One benefit would be 
+no extra configuration needs to be done with Travis CI and test coverage and they have been 
+done with GTest before in BART. We will know the progress at tomorrow's BART meeting. As he
+prefer GTest over CTest, we got an agreement of transferring CTest to GTest if he can get MPI
+to work with GTest. This can be good as each test with CTest using MPI has to individually
+initialize and finalize MPI, which can be time consuming considering we will fully test BART. Yet,
+Josh claims GTest could work in a way s.t. MPI will only be initialized once and all tests 
+requesting MPI will be executed during that time and then MPI will be finalized.
+
+For Sam, an initial plan is to try to write a 1D code in a separate repo using deal.II. The plan was based on his familiarity with 1D formulation. It will also serve as a demo using 2 different finite element types which can be useful for BART and will be incorporated in Josh's project.
+
+For Alex, we haven't discussed for real detail for both serial and MPI-based. He started installing deal.II from last Wednesday and I haven't heard back from him yet. I will talk with him about what we can do afterwards.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+Put instructions in style guide about how to do unit testing. Also, work with students to get everybody smoothly started.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

@@ -1,0 +1,115 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Weekly Catchup} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+Previous goals since last check-in was to first get tutorials into style guide and try to get students started.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+\subsection{A decision on unit testing}
+CTest is somehow not fast, especially for the first run right after compilation. In the BART meeting on 02-07, Josh presented a demo using GTest for {\tt AQBase} by modifying the CTest based testing source, which was fast for the serial run.
+
+On the other hand, due to the working with provided utility functions/struct in test\_utilities.h, it is super easy/intuitive to do unit testings which requires MPI. We concluded that unit testing will be moved to using GTest for those not requiring MPI and keep using CTest for tests which need MPI.
+
+\subsection{A tutorial}
+A tutorial has been written for how to use CTest for unit testing. It introduces how CTest with deal.II and how to do testing in parallel as easy as in serial. Complete testing functions are given.
+
+A GTest tutorial for BART will also be written in the style guide as well.
+
+\subsection{Communication with students}
+{\bf Josh.} We spent two hours together talking about various topics, which includes our road map for the project by separating the whole thing into different pieces with tasks we need to do within each. No specific timeline is discussed for each piece.
+
+{\bf Sam.} He's busy with classes and got no chance to talk to me up to the past Friday. We talked a bit of getting his project extended as a start. I will talk about details in check-in.
+
+{\bf Marissa and Alex.} I was in a little talk with Marissa trying to help find the coding bug out and will be holding a meeting after check-in. Alex is pretty busy as well and maybe 
+
+\subsection{1D support}
+For the purpose of supporting upcoming involvement of Sam, I think adding 1D support (will be a PR soon), which is not technically difficult and much time consuming, can be helpful. Unit tests were added as well following test-driven development principle.
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+I and Josh will have a para-coding in the coming week s.t. we will get GTest going with BART. And then I am planning maybe several small meetings to better sort out the task planning.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

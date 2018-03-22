@@ -1,0 +1,125 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.3in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Weekly Catchup} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{March 08, \today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+\begin{itemize}
+	\item Transferring CTest to GTest to the maximum extent
+	\item Small meetings for task planning and progress checking
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+\subsection{Marissa}
+A bunch of small meetings were scheduled with Marissa to help debug her code. I am comfortable
+with the current way Marissa working with me. The only thing is the debugging process 
+took a lot of cautions and patience to find out not only coding bugs but also mathematical
+errors. It's slow but progressing gradually.
+
+One of the meetings with Marissa involved things which has to be done. A diagram was created 
+thereafter to better aid tracking her progress. It should be reasonable for August-deadline time line.
+
+\subsection{BART}
+The past few weeks were coding/PR heavy weeks. It included transferring unit tests from CTest to GTest, Redesigning/formatting codes, reviewing/committing to PR and investigating cell-number related error \url{https://github.com/SlaybaughLab/BART/issues/9}.
+
+Most part is going smoothly except for the error investigation. I will revisit the investigation until everything else for the restart is ready.
+
+Josh are starting well and we are collaborating super fine in terms of idea discussing, detailing implementation and PR reviewing.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+As the first contract ends on \today, I may need Rachel to contact HR person to see what 
+has to be done for the extension.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+The process of restart involves a lot of thought and helpful discussions between me and Josh.
+It gives a good idea about how and what to do with {\tt BARTDriver} and how we treat free functions and global variables. This will be the first main goals until the next check-in. Also, some dense meetings will be held before April, when Josh's baby comes into this new world. He'd like to get as much done as possible so I will be at his assistance.
+
+The other thing is to help Marissa get the code running. It might just be as time consuming as it used to be usually.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+\section{Links to any related materials}
+A shared folder has been created and access invitations have been sent to Rachel, Marissa and 
+Josh. Here are the links for public access:
+\begin{itemize}
+	\item BART: \url{https://www.dropbox.com/sh/5p340f5bs7k6wt3/AACbdvExIjzhLG4l4aqGgV-Ta?dl=0}
+	\item Marissa: \url{https://www.dropbox.com/sh/hslgnvovvxigs6j/AABpcwP6bfquVoP-AIp5wwRra?dl=0}
+	\item Josh: \url{https://www.dropbox.com/sh/el2b303k9avjqvd/AABiMkuBiZOcThUg1bhvYUSoa?dl=0}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

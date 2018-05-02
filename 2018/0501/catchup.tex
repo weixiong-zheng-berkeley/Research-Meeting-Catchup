@@ -1,0 +1,165 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Check-in} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+Last week's goal was to move on restoration while prepare things for Alex.
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+Other than the ordinary part of moving on.
+
+\subsection{Preparation for Alex}
+The task I assigned to Alex was not simply moving things from devel to restart. The reason
+is that through rethinking, I redesigned the data structure of {\tt MaterialProperties} class.
+To get Alex started, I prepared all the necessary data-structure change in header so that
+Alex can do the moving work in source file with the functions in devel and data structures
+I put in header file.
+
+\subsection{Simplification of data input}
+Original design of class and functions asks for a lot of arguments. For instance, the
+{\tt EquationBase} constructor is declared as:
+\begin{verbatim}
+template<int dim>
+EquationBase<dim>::EquationBase (dealii::ParameterHandler &prm, 
+    std::unique_ptr<AQBase<dim>> &aq_ptr,
+    std::unique_ptr<MeshGenerator<dim>> &msh_ptr,
+    std::unique_ptr<MaterialProperties> &mat_ptr);
+\end{verbatim}
+
+This potentially causes issues if developers do not use cautions. So a improvement that
+has been done during the past weekend was putting things together using a {\tt struct}
+\begin{verbatim}
+template<int dim>
+struct ComputingData {
+  std::unique_ptr<AQBase<dim>> &aq_ptr;
+  std::unique_ptr<MeshGenerator<dim>> &msh_ptr;
+  std::unique_ptr<MaterialProperties> &mat_ptr;
+};
+\end{verbatim}
+s.t. once {\tt EquationBase} is implemented, it will be much simpler and more readable
+\begin{verbatim}
+template<int dim>
+EquationBase<dim>::EquationBase (dealii::ParameterHandler &prm, 
+    std::unique_ptr<ComputingData<dim>> &data_ptr);
+\end{verbatim}
+
+The same idea will be applied to containing data for functions related to iterations. 
+For instance, there will be a {\tt struct} called {\tt IterationData<dim>} with declaration of
+\begin{verbatim}
+template <int dim>
+struct IterationData {
+  std::vector<dealii::Vector<double>> &sflxes_proc;
+  std::vector<std::unique_ptr<EquationBase<dim>>> &equ_ptrs;
+  std::unique_ptr<IGBase<dim>> &ig_ptr;
+  std::unique_ptr<MGBase<dim>> &mg_ptr;
+  std::unique_ptr<EigenBase<dim>> &eig_ptr;
+}
+\end{verbatim}
+The goodness we are gonna see at the end is the simplification of various function definitions.
+For instance, the {\tt Iterations<dim>::solve\_problems} is defined as
+\begin{verbatim}
+template <int dim>
+void Iterations<dim>::solve_problems (std::vector<Vector<double>> &sflxes_proc,
+    std::vector<std_cxx11::shared_ptr<EquationBase<dim> > > &equ_ptrs,
+    std_cxx11::shared_ptr<IGBase<dim> > ig_ptr,
+    std_cxx11::shared_ptr<MGBase<dim> > mg_ptr,
+    std_cxx11::shared_ptr<EigenBase<dim> > eig_ptr) {...}
+\end{verbatim}
+After implementing the proposed struct, we are having a much simpler function argument
+set
+\begin{verbatim}
+template <int dim>
+void Iterations<dim>::solve_problems (
+    std::unique_ptr<IterationData<dim>> &itr_data_ptr) {...}
+\end{verbatim}
+Hooray!
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+I will continue whenever I have time this week as this is a moving week. Also I will see if
+Alex asks for help.
+
+The other important thing is to finish up the first draft of introduction slides with equations.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

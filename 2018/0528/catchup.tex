@@ -1,0 +1,131 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Check-in} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+\begin{itemize}
+	\item Continue on rewriting based on using struct to store data.
+	\item Get Alex started.
+	\item Provide instructions/helps for Marissa
+\end{itemize}
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+\subsection{Rewriting}
+Up to now, the rewriting process is progressing smoothly. In short, the new structure is:
+\begin{itemize}
+	\item {\tt FundamentalData} holds 
+	\begin{itemize}
+		\item Matrices and vectors;
+		\item Cross section data;
+		\item Mesh;
+		\item deal.II data structure that'll be used for assembly.
+	\end{itemize}
+	\item {\tt EquationBase} is remade close to a pure operator on the data structures held by {\tt FundamentalData}.
+	\item Hierarchically, every level of iteration class has a member variable of iteration class that is one-level lower than current class, e.g. {\tt EigenBase} has a member variable of {\tt MGBase} instance and {\tt MGBase} has a member variable of {\tt IGBase} instance.
+\end{itemize}
+
+In the end, it leads to the fact that
+\begin{itemize}
+	\item All data structure which needs to be initialized in {\tt BARTDriver} but lives inside {\tt EquationBase} are now inside {\tt FundamentalData} (struct). EquationBase is cleaned to be a pure operator.
+	\item Iteration classes are made to be operators as well. They operate on EquationBase instance.
+\end{itemize}
+
+\subsection{Alex's progress}
+Alex just started with adding a resolution to a conflict between gmock and deal.II, which never existed until deal.II 9.0.
+
+\subsection{Marissa}
+Finished meeting with Marissa for her unclearness about power iterations. We are setting up meetings off-campus in Hayward starbucks for extra meetings.
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+\begin{itemize}
+	\item Finish the {\tt BARTDriver} as a closure to the rewriting (coding part)
+	\item Add unit tests
+	\begin{itemize}
+		\item Iterations can be easily tested by gtest
+		\item ctest can be used for EquationBase as MPI will be needed.
+	\end{itemize}
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

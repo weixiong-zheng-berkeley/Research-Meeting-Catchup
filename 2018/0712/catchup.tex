@@ -1,0 +1,155 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Check-in} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+\begin{itemize}
+	\item Finish debugging
+	\item Design and add unit testing
+	\item Put efforts on gtest+MPI
+	\item Help Marissa
+\end{itemize}
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+\subsection{Debugging progress and testing}\label{debug}
+During last week, the compilation errors were finally resolved. The final efforts was actually
+fighting on one single linker error from the reimplementation of material properties due to 
+lack of understanding {\tt inline}. What happened was I added {\tt inline} to small functions like
+the interface functions while those functions, following Google Style's requirement were set
+to be {\tt const} in the reimplementation. 
+
+I am now fighting with runtime error and due to the restructuring. These will be eliminated and
+unit testing will be set up.
+
+\subsection{Gtest+MPI}
+Part of the efforts was to understand what exactly we need to do to enable the MPI-gtest combo.
+I talked to Josh and he had no idea. I finally got through this in terms of understanding. 
+
+Basically what's happening is by default, gtest environment class {::testing::Environment} does 
+not provide any functionality to initialize and terminate MPI. What we really need to do is 
+to provide a child class and override the {\tt SetUp()} class to initialize MPI using {\tt MPI\_Init} and override {\tt TearDown()}
+class to Finalize MPI using {\tt MPI\_Finalize} from STL.
+
+The goodness is other than overriding functions from {::testing::Environment} everything will be almost the same.
+
+The code snippet has been provided to Josh so he can include it when he separates the testing main function
+from the BART main function for better understandability/readability. Hopefully, this will be reflected in the PR.
+
+\subsection{Marissa}
+Several meetings and online chatting were scheduled to debug the code. Two-grid part of the code, from today,
+finally gives consistent result with NDA.
+
+Through the brain damaging process, the difference between NDA and SAAF is reduced by changing to using
+Gauss node
+
+The other thing is Marissa wants to do a more realistic code. So some efforts were put on
+getting familiar with my previous NJOY scripts and adapt them to generating the desirable 
+cross sections. And we shall see if this works. In the meantime, I suggest Marissa use
+moderator cross section from C5G7 and produce an artificial absorber by lowering
+scattering cross sections by 20\% to be used in the shielding test. We will see how this works too.
+
+\subsection{Alex's progress and summer plan}\label{alex}
+As mentioned in the Subsection\ \ref{debug},\ I eventually asked Alex not to do the moving
+the MaterialProperties from dev branch to restart branch 
+as I think the protocol-related way is the better way to do material-related work. Instead,
+I suggested Alex directly work with Josh on protocol buffer and I rewrite the MaterialProperties
+(for the purpose of restarting BART).
+
+As Alex's style, I requested he staying in Josh's office whenever Josh's in office. It turns out that
+this works super well in terms of efficiency (he's not a home-working person).
+
+After the interactions between Josh and Alex during the past week, Josh came up a plan which
+looks reasonable and detailed enough with work to be done and certain measures to see how's 
+Alex's work at the end of the summer.
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+%\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+\begin{itemize}
+	\item Get the runtime error done so BART will be at where we restart
+	\item Continue to add unit tests.
+	\item Get gtest to work with MPI (with Josh).
+	\item See if there's anything I can help for Marissa
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+%Google protocol buffers is here: https://developers.google.com/protocol-buffers/
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

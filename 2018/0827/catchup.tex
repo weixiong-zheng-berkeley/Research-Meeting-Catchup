@@ -1,0 +1,140 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{1em} % Removes all indentation from paragraphs
+\setlength{\parskip}{1em}
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Check-in} % Title
+
+\author{Weixiong Zheng} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 0
+%----------------------------------------------------------------------------------------
+\section{Updates on previous goals}
+\begin{itemize}
+	\item Discuss details of testing for all the class we have right now and separate the workload for 
+	Josh and me.
+	\item Integrate the new material class with the restart
+	\item Start the research purpose development.
+\end{itemize}
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Progress up to now}
+\subsection{Success and failure of MPI Testing}\label{debug}
+Success of MPI since last meeting. A PR has been reviewed by Josh and merged for that.
+In short, we could do MPI testing by giving a TearDown function to finalize the MPI.
+
+I thought it was a whole success and so I continued adding testings with MPIs and things compile
+fine. But when running, it failed. More than a week was spent on finding where the error
+came from.
+
+It was finally realized that the MPI failed for multiple tests because the file test\_main.cc
+written by Josh by separating testing part of previous main.cc was ignored in the compilation
+process (for instance, including any random header file never existed would not cause an 
+compilation error).
+By default
+gtest\_main.cc was used. Unfortunately, the default main function from gtest
+does not have proper mechanism creating and destroying parallel environment, causing
+the errors we have now.
+
+I was trying to resolving this and later involved Josh in.
+
+\subsection{Research purpose development}
+We started scheduling hours long meeting on coding with BART, specifically about the finite 
+element parts in EquationBase. Fortunately, Josh understood the logics quickly with taking detailed notes. What I feel is Doxygen would not be super useful
+in starting-period. In-person explanation is much easier for new developer to understand
+the whole thing. 
+So we planned to meet in the coming week for both answering his existing
+questions and talking more about other parts we haven't touched. 
+
+The goodness is Josh loves to learn what's going on under the hood, not just learn the
+data structures/logics of BART, but the logical relationship between BART and deal.II to
+improve his understandability. So while he goes back and digest on what we talked, I suggested
+two basic yet useful tutorials on deal.II as he requested useful tutorial steps.
+
+
+\subsection{New material class integration}
+This part is in progress and in a ongoing PR by Josh. I will just assist Josh on this if there's
+any issue resolving the Travis failure.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+%\section{Things you need from Rachel}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Goals/Things will be going on}
+\begin{itemize}
+	\item Fix the MPI test failure with Josh and continue testing
+	\item Be a consultant for Josh to accelerate BART implementations
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+%\section{Links to any related materials}
+%Google protocol buffers is here: https://developers.google.com/protocol-buffers/
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{apalike}
+%
+%\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}
